@@ -24,10 +24,17 @@ results in much more stable portfolios than using mean-historical return.
 
 The Black-Litterman formula is given below:
 $$E(R) = [(\tau \Sigma)^{-1}+P^T \Omega^{-1}P]^{-1}[(\tau \Sigma)^{-1}\Pi + P^T\Omega^{-1}Q]$$
-* E(R) is a Nx1 vector of expected returns, where N is the number of assets.
-* Q is a Kx1 vector of views.
-* P is the KxN picking matrix which maps views to the universe of assets. Essentially, it tells the model which view corresponds to which asset(s).
+* $E(R)$ is a Nx1 vector of expected returns, where N is the number of assets.
+* $Q$ is a Kx1 vector of views.
+* $P$ is the KxN picking matrix which maps views to the universe of assets. Essentially, it tells the model which view corresponds to which asset(s).
 * $\Omega$ is the KxK uncertainty matrix of views.
 * $\Pi$ is the Nx1 vector of prior expected returns.
 * $\Sigma$ is the NxN covariance matrix of asset returns (as always)
 * $\tau$ is a scalar tuning constant.
+
+#### Priors
+We set the prior weights for styles-mix as equally weighted. In this example, prior weights is a dictionary:`style_weights_prior = {"Basis": 0.20, "HP": 0.20, 
+"Momentum": 0.20, "Skewness": 0.20, "Basis-Mom": 0.20}.` The mean-variance optimization suggests the optimal portfolio weights are
+`w_{MV}=\delta^{-1}\Sigma^{-1}\mu`, where $\delta$ is risk-aversion, $Sigma$ is the covariance matrix of returns, and $\mu$ is the mean of returns. 
+Through this formula, we could input the priors for weights and the covariance matrix, and generate a prior for the mean of the portfolio:
+$$\Pi=\delta\Sigma w_{style_weights_prior}$$
