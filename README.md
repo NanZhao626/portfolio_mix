@@ -44,10 +44,29 @@ In this example, we set `delta=5` and covariance matrix as the Ledoit and Wolf (
 In the Black-Litterman model, users can provide absolute or relative views about different styles. Absolute views are statements like: “Basis will increase 10%” 
 or “HP will drop 40%”. Relative views, on the other hand, are statements like “Basis will outperform HP by 3%”. These views must be specified in the vector Q
  and mapped to the asset universe via the picking matrix P. In this example, we set the views for different styles to be equally increase or decrease
-, i.e. `q_matrix = np.array([[0.002],[0.002],[0.002],[0.002],[0.002]])`. This is a absolute view and could be picked by the picking matrix as
+, i.e. `q_matrix = np.array([[0.002],[0.002],[0.002],[0.002],[0.002]])`. This is an absolute view and could be picked by the picking matrix as
 `p_matrix = np.array([[1,0,0,0,0], [0,1,0,0,0], [0,0,1,0,0], [0,0,0,1,0], [0,0,0,0,1]])`. Investors could play with different views they have against
 each style portfolio. 
 
 #### Confidence matrix and tau
 The views formed in the last section should be delivered to the model via a confidence matrix. The confidence matrix $\Omega$ is a diagonal covariance matrix 
-containing the variances of each view.
+containing the variances of each view. One heuristic for calculating $\Omega$ is to say that is proportional to the variance of the priors. Here we define 
+the confidence matris as
+$$\Omega = \tau * P\Sigma P^T$$
+where $\Sigma$ is the ovariance matrix as the Ledoit and Wolf (2008) shrinkage estimates. $\tau$ controls the relative weighting of the prior views. We
+choose $\tau = 0.05$.
+
+#### Output of the BL model
+The output of the BL model is the posterior estimates of the mean and covariance of style returns, which are $E(R)$ and $\Sigma$ respectively. Using the 
+mean-variance optimization result again, we could derive the posterior weights for style returns: 
+$$w_posterior = (\delta\Sigma)^{-1}E(R)$$
+
+For each re-balance time, we could calculate the posterior style weights $w_{posterior,t}$ and form the posterior Bayesian portfolio mix using the weights. 
+
+#### References
+DeMiguel, V., Garlappi, L. and R. Uppal (2009). Optimal versus naive diversification: How inefficient is the 1/N portfolio strategy? 
+Review of Financial Studies 22, 1915–1953.
+
+Ledoit, O. and M. Wolf (2008). Robust performance hypothesis testing with the Sharpe ratio. Journal of Empirical Finance 15, 850–859. 
+
+PyPortfolioOpt, https://pyportfolioopt.readthedocs.io/en/latest/UserGuide.html
