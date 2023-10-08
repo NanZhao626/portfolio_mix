@@ -59,7 +59,7 @@ choose $\tau = 0.05$.
 #### Output of the BL model
 The output of the BL model is the posterior estimates of the mean and covariance of style returns, which are $E(R)$ and $\Sigma$ respectively. Using the 
 mean-variance optimization result again, we could derive the posterior weights for style returns: 
-$$w_posterior = (\delta\Sigma)^{-1}E(R)$$
+$$w_{posterior} = (\delta\Sigma)^{-1}E(R)$$
 
 For each re-balance time, we could calculate the posterior style weights $w_{posterior,t}$ and form the posterior Bayesian portfolio mix using the weights. 
 
