@@ -35,6 +35,6 @@ $$E(R) = [(\tau \Sigma)^{-1}+P^T \Omega^{-1}P]^{-1}[(\tau \Sigma)^{-1}\Pi + P^T\
 #### Priors
 We set the prior weights for styles-mix as equally weighted. In this example, prior weights is a dictionary:`style_weights_prior = {"Basis": 0.20, "HP": 0.20, 
 "Momentum": 0.20, "Skewness": 0.20, "Basis-Mom": 0.20}.` The mean-variance optimization suggests the optimal portfolio weights are
-`w_{MV}=\delta^{-1}\Sigma^{-1}\mu`, where $\delta$ is risk-aversion, $Sigma$ is the covariance matrix of returns, and $\mu$ is the mean of returns. 
+$w_{MV}=\delta^{-1}\Sigma^{-1}\mu$, where $\delta$ is risk-aversion, $Sigma$ is the covariance matrix of returns, and $\mu$ is the mean of returns. 
 Through this formula, we could input the priors for weights and the covariance matrix, and generate a prior for the mean of the portfolio:
 $$\Pi=\delta\Sigma w_{style_weights_prior}$$
