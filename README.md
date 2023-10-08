@@ -24,3 +24,10 @@ results in much more stable portfolios than using mean-historical return.
 
 The Black-Litterman formula is given below:
 $$E(R) = [(\tau \Sigma)^{-1}+P^T \Omega^{-1}P]^{-1}[(\tau \Sigma)^{-1}\Pi + P^T\Omega^{-1}Q]$$
+* E(R) is a Nx1 vector of expected returns, where N is the number of assets.
+* Q is a Kx1 vector of views.
+* P is the KxN picking matrix which maps views to the universe of assets. Essentially, it tells the model which view corresponds to which asset(s).
+* $\Omega$ is the KxK uncertainty matrix of views.
+* $\Pi$ is the Nx1 vector of prior expected returns.
+* $\Sigma$ is the NxN covariance matrix of asset returns (as always)
+* $\tau$ is a scalar tuning constant.
