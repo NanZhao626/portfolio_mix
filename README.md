@@ -19,7 +19,8 @@ The Black-Litterman (BL) model combines a prior estimate of returns with views o
 expected returns. Meanwhile, the model could easily incorporate the shrinkage estimates for covariance matrix (eg, Ledoit and Wolf, 2008),
 to reduce the estimation errors even further. The benefit of using the Black Littlerman model for Bayesian portfolio mix is
 that the posterior distribution of returns is conjugate and thus the closed form is known, while other Bayesian methods may require
-MCMC methods to generate the posterior distibutions for returns which is time-consuming.
+MCMC methods to generate the posterior distibutions for returns which is time-consuming. In addition, using Black-Litterman posterior returns 
+results in much more stable portfolios than using mean-historical return.
 
 The Black-Litterman formula is given below:
-$$E(R)$$
+$$E(R) = [(\tau \Sigma)^{-1}+P^T \Omega^{-1}P]^{-1}[(\tau \Sigma)^{-1}\Pi + P^T\Omega^{-1}Q]$$
