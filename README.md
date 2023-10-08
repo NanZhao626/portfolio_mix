@@ -37,4 +37,17 @@ We set the prior weights for styles-mix as equally weighted. In this example, pr
 "Momentum": 0.20, "Skewness": 0.20, "Basis-Mom": 0.20}.` The mean-variance optimization suggests the optimal portfolio weights are
 $w_{MV}=\delta^{-1}\Sigma^{-1}\mu$, where $\delta$ is risk-aversion, $\Sigma$ is the covariance matrix of returns, and $\mu$ is the mean of returns. 
 Through this formula, we could input the priors for weights and the covariance matrix, and generate a prior for the mean of the portfolio:
-$$\Pi=\delta\Sigma w_{prior}$$. In this example, we set `delta=5` and covariance matrix as the Ledoit and Wolf (2008) shrinkage estimates.
+$$\Pi=\delta\Sigma w_{prior}$$ 
+In this example, we set `delta=5` and covariance matrix as the Ledoit and Wolf (2008) shrinkage estimates.
+
+#### Views
+In the Black-Litterman model, users can provide absolute or relative views about different styles. Absolute views are statements like: “Basis will increase 10%” 
+or “HP will drop 40%”. Relative views, on the other hand, are statements like “Basis will outperform HP by 3%”. These views must be specified in the vector Q
+ and mapped to the asset universe via the picking matrix P. In this example, we set the views for different styles to be equally increase or decrease
+, i.e. `q_matrix = np.array([[0.002],[0.002],[0.002],[0.002],[0.002]])`. This is a absolute view and could be picked by the picking matrix as
+`p_matrix = np.array([[1,0,0,0,0], [0,1,0,0,0], [0,0,1,0,0], [0,0,0,1,0], [0,0,0,0,1]])`. Investors could play with different views they have against
+each style portfolio. 
+
+#### Confidence matrix and tau
+The views formed in the last section should be delivered to the model via a confidence matrix. The confidence matrix $\Omega$ is a diagonal covariance matrix 
+containing the variances of each view.
