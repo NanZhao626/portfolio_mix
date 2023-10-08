@@ -51,9 +51,9 @@ each style portfolio.
 #### Confidence matrix and tau
 The views formed in the last section should be delivered to the model via a confidence matrix. The confidence matrix $\Omega$ is a diagonal covariance matrix 
 containing the variances of each view. One heuristic for calculating $\Omega$ is to say that is proportional to the variance of the priors. Here we define 
-the confidence matris as
+the confidence matrix as
 $$\Omega = \tau * P\Sigma P^T$$
-where $\Sigma$ is the ovariance matrix as the Ledoit and Wolf (2008) shrinkage estimates. $\tau$ controls the relative weighting of the prior views. We
+where $\Sigma$ is the covariance matrix as the Ledoit and Wolf (2008) shrinkage estimates. $\tau$ controls the relative weighting of the prior views. We
 choose $\tau = 0.05$.
 
 #### Output of the BL model
